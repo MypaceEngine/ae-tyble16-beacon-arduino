@@ -19,17 +19,26 @@
 EddystoneBeacon eddystoneBeacon = EddystoneBeacon(EDDYSTONE_BEACON_REQ, EDDYSTONE_BEACON_RDY, EDDYSTONE_BEACON_RST);
 BLEUuid         uid             = BLEUuid("01020304050607080910-AABBCCDDEEFF"); // <namespace id>-<instance id>
 
-unsigned long time;
-
 void setup() {
-  eddystoneBeacon.begin(-18, uid); // power, UID
+  pinMode(19, OUTPUT);
+  pinMode(25, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(1, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(0, OUTPUT);
+  pinMode(17, OUTPUT);
+  pinMode(23, OUTPUT);
+  pinMode(21, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(27, OUTPUT);
+  pinMode(26, OUTPUT);
+  eddystoneBeacon.begin(-4, uid); // power, UID
 }
 
 void loop() {
-      pinMode(6, OUTPUT);
-      digitalWrite(6, HIGH);
-      eddystoneBeacon.loop();
-      digitalWrite(6, LOW);
-      pinMode(6, INPUT);
-      delay(1000);
+  eddystoneBeacon.loop();
+  delay(15);
+  sd_power_system_off();
 }
